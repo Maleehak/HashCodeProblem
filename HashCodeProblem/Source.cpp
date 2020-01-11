@@ -5,11 +5,10 @@ using namespace std;
 void slicesOrdered( ifstream&);
 int main() {
 	ifstream f;
-	f.open("a_example.txt");
+	f.open("c_medium .txt");
 	slicesOrdered(f);
 
 }
-
 void slicesOrdered( ifstream& fin) {
 	vector<pair<int, int>>slicesInPizzas;
 	if (fin.is_open()) {
@@ -26,6 +25,7 @@ void slicesOrdered( ifstream& fin) {
 		fin.close();
 		vector<pair<int, int>>orderedSlices;
 		int slicesSum = 0;
+		int pizzaTypes = 0;
 		int slicesSumTemp = 0;
 		int temp1, temp2;
 		for (int i = slicesInPizzas.size() - 1; i >= 0; i--) {
@@ -34,12 +34,13 @@ void slicesOrdered( ifstream& fin) {
 				temp1 = slicesInPizzas[i].first;
 				temp2 = slicesInPizzas[i].second;
 				slicesSum = slicesSumTemp;
+				pizzaTypes++;
 				orderedSlices.push_back(make_pair(temp1, temp2));
 			}
 		}
 		ofstream fout;
-		fout.open("a_example_output.txt");
-		fout << slicesSum << endl;
+		fout.open("c_medium_output.txt");
+		fout <<pizzaTypes << endl;
 		if (fout.is_open()) {
 			for (int i = orderedSlices.size() - 1; i >= 0; i--) {
 				fout << orderedSlices[i].second << " ";
